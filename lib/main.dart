@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:wisata/pages/aboutpage.dart';
 import 'package:wisata/pages/homepage.dart';
 import 'package:wisata/pages/registerpage.dart';
+import 'package:wisata/pages/topdestinasipage.dart';
 
+import 'pages/destinasipage.dart';
 import 'pages/loginpage.dart';
 
 void main() {
@@ -20,7 +21,8 @@ class MainApp extends StatelessWidget {
         '/': (context) => const LoginPage(),
         '/register': (context) => const RegisterPage(),
         '/homepage': (context) => const HomePage(),
-        '/aboutpage': (context) => const AboutPage(),
+        '/destinasi': (context) => const DestinasiPage(),
+        '/top': (context) => const TopDestinasiPage(),
       },
     );
   }

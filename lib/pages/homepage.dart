@@ -34,29 +34,29 @@ class HomePage extends StatelessWidget {
 
   Widget header(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 57),
+      padding: const EdgeInsets.only(left: 57),
       width: 1280,
       height: 110,
-      color: Color(0xFF05939C),
+      color: const Color(0xFF05939C),
       child: Row(
         children: [
           teksJudul('Home', 32, () {}),
           spasi(43),
 
           // Bagian About Us
-          teksJudul(
-              'About Us', 32, () => Navigator.pushNamed(context, '/aboutpage')),
+          teksJudul('Destinasi', 32,
+              () => Navigator.pushNamed(context, '/destinasi')),
           spasi(43),
           // ------------ //
 
           // Bagian Destinasi
-          teksJudul('Destinasi', 32,
-              () => Navigator.pushNamed(context, '/aboutpage')),
+          teksJudul(
+              'Top Destinasi', 32, () => Navigator.pushNamed(context, '/top')),
           spasi(43),
           // ------------ //
 
           // Bagian Paling Populer
-          teksJudul('Paling Populer', 32,
+          teksJudul('Contact US', 32,
               () => Navigator.pushNamed(context, '/aboutpage')),
           spasi(329),
           // ------------ //
