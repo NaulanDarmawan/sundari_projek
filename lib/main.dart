@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wisata/pages/contactpage.dart';
 import 'package:wisata/pages/homepage.dart';
 import 'package:wisata/pages/registerpage.dart';
 import 'package:wisata/pages/topdestinasipage.dart';
@@ -23,6 +24,7 @@ class MainApp extends StatelessWidget {
         '/homepage': (context) => const HomePage(),
         '/destinasi': (context) => const DestinasiPage(),
         '/top': (context) => const TopDestinasiPage(),
+        '/contact': (context) => const ContactPage(),
       },
     );
   }

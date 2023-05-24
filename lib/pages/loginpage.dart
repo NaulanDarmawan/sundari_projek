@@ -8,6 +8,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var formKey = GlobalKey<FormState>();
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   bool kelihatan = true;
   @override
   Widget build(BuildContext context) {
@@ -26,25 +44,28 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget formLogin() {
     return Center(
-      child: Container(
-        width: 536,
-        height: 536,
-        decoration: const BoxDecoration(
-            color: Color(0xFFF6F1F1),
-            borderRadius: BorderRadius.all(Radius.circular(15))),
-        child: Column(
-          children: [
-            spasi(36),
-            templateTeks('SELAMAT DATANG', const Color(0xFF000000), 32),
-            spasi(81),
-            inputFormBiasa('EMAIL'),
-            spasi(42),
-            inputFormPassword('PASSWORD'),
-            spasi(42),
-            tombolKu(),
-            spasi(26),
-            teksLink(),
-          ],
+      child: Form(
+        key: formKey,
+        child: Container(
+          width: 536,
+          height: 536,
+          decoration: const BoxDecoration(
+              color: Color(0xFFF6F1F1),
+              borderRadius: BorderRadius.all(Radius.circular(15))),
+          child: Column(
+            children: [
+              spasi(36),
+              templateTeks('SELAMAT DATANG', const Color(0xFF000000), 32),
+              spasi(81),
+              inputFormBiasa('EMAIL', emailController),
+              spasi(42),
+              inputFormPassword('PASSWORD', passwordController),
+              spasi(42),
+              tombolKu(),
+              spasi(26),
+              teksLink(),
+            ],
+          ),
         ),
       ),
     );
@@ -62,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget inputFormBiasa(String tulisanku) {
+  Widget inputFormBiasa(String tulisanku, TextEditingController controller) {
     return Container(
       width: 489,
       height: 70,
@@ -71,7 +92,8 @@ class _LoginPageState extends State<LoginPage> {
       decoration: const BoxDecoration(
           color: Color(0xFFAFD3E2),
           borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         style: const TextStyle(
           fontSize: 24,
         ),
@@ -84,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget inputFormPassword(String tulisanku) {
+  Widget inputFormPassword(String tulisanku, TextEditingController controller) {
     return Container(
       width: 489,
       height: 70,
@@ -93,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
       decoration: const BoxDecoration(
           color: Color(0xFFAFD3E2),
           borderRadius: BorderRadius.all(Radius.circular(15))),
-      child: TextField(
+      child: TextFormField(
+        controller: controller,
         obscureText: kelihatan,
         style: const TextStyle(fontSize: 24, overflow: TextOverflow.ellipsis),
         decoration: InputDecoration(
@@ -125,7 +148,15 @@ class _LoginPageState extends State<LoginPage> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15))),
           onPressed: () {
-            Navigator.pushReplacementNamed(context, '/homepage');
+            if (formKey.currentState!.validate()) {
+              if (emailController.text == 'Sundari' &&
+                  passwordController.text == 'Sundari') {
+                Navigator.pushReplacementNamed(context, '/homepage');
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('Anda Gagal Masuk')));
+              }
+            }
           },
           child: const Center(
               child: Text('LOGIN',

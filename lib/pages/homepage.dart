@@ -56,8 +56,8 @@ class HomePage extends StatelessWidget {
           // ------------ //
 
           // Bagian Paling Populer
-          teksJudul('Contact US', 32,
-              () => Navigator.pushNamed(context, '/aboutpage')),
+          teksJudul(
+              'Contact US', 32, () => Navigator.pushNamed(context, '/contact')),
           spasi(329),
           // ------------ //
 
